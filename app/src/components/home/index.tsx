@@ -16,6 +16,7 @@ export class Home extends React.Component<any, any> {
             <div className='text-center'>
                 <HydrateStore />
                 <Messages />
+                Testing first build deployment
             </div>
         )
     }
