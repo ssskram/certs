@@ -1,0 +1,8 @@
+# secrets
+.env
+
+# dependencies
+node_modules
+
+# deployment scripts
+deploy
