@@ -25,7 +25,7 @@ export const actionCreators = {
         dispatch({ type: constants.setAdminStatus, adminStatus: adminStatus.isAdmin })
     },
     loadUserProfile: (user): AppThunkAction<any> => async (dispatch) => {
-        const response = await fetch("http://localhost:3000/pghcerts/userProfile?user=" + user.email, {
+        const response = await fetch("https://365proxy.azurewebsites.us/pghcerts/userProfile?user=" + user.email, {
             method: 'get',
             headers: new Headers({
                 'Authorization': 'Bearer ' + process.env.REACT_APP_365_API
@@ -45,7 +45,7 @@ export const actionCreators = {
             Department: profile.department,
             Title: profile.title
         }
-        fetch('http://localhost:3000/pghcerts/userProfile', {
+        fetch('https://365proxy.azurewebsites.us/pghcerts/userProfile', {
             method: 'POST',
             body: JSON.stringify(forSP),
             headers: new Headers({
@@ -70,7 +70,7 @@ export const actionCreators = {
             Department: profile.department,
             Title: profile.title
         }
-        fetch('http://localhost:3000/pghcerts/userProfile?id=' + profile.id, {
+        fetch('https://365proxy.azurewebsites.us/pghcerts/userProfile?id=' + profile.id, {
             method: 'PUT',
             body: JSON.stringify(forSP),
             headers: new Headers({

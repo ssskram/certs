@@ -60,8 +60,6 @@ export class Account extends React.Component<props, state> {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log(this.props.userProfile)
-        console.log(nextProps.userProfile)
         // when user profile changes or is set, close all modals
         if (this.props.userProfile != nextProps.userProfile) {
             this.setState({
