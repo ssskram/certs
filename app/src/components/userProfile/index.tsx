@@ -80,7 +80,6 @@ export class Account extends React.Component<props, state> {
             <div>
                 <AccountContainer
                     user={this.props.user}
-                    userProfile={this.props.userProfile}
                     setState={this.setState.bind(this)}
                 />
                 {loadingProfile &&

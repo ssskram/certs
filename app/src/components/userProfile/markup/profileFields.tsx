@@ -26,12 +26,12 @@ type state = {
     spinner: boolean
 }
 
-export class SelectDepartment extends React.Component<props, state> {
+export class SelectDepartmentTitle extends React.Component<props, state> {
     constructor(props) {
         super(props)
         this.state = {
-            department: undefined,
-            title: undefined,
+            department: props.userProfile.department ? { value: props.userProfile.department, label: props.userProfile.department } : undefined,
+            title: props.userProfile.title ? { value: props.userProfile.title, label: props.userProfile.title } : undefined,
             spinner: false
         }
         this.setUserProfile = this.setUserProfile.bind(this)
@@ -100,4 +100,4 @@ export default connect(
         ...userProfile.actionCreators,
         ...user.actionCreators
     })
-)(SelectDepartment as any)
+)(SelectDepartmentTitle as any)

@@ -7,8 +7,8 @@ import * as types from './types'
 const unloadedState = {
     userProfile: {
         id: undefined,
-        department: '...loading',
-        title: '...loading',
+        department: undefined,
+        title: undefined,
         isAdmin: false
     } as types.userProfile
 }
