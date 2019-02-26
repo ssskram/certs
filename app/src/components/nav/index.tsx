@@ -1,4 +1,8 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
+import { ApplicationState } from '../../store'
+import * as userProfile from '../../store/userProfile'
+import * as types from '../../store/types'
 import { Link } from 'react-router-dom'
 import { Nav, NavItem, Navbar } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
@@ -9,7 +13,11 @@ const btnStyle = {
   margin: '6px 10px'
 }
 
-export default class NavMenu extends React.Component<any, any> {
+type props = {
+  userProfile: types.userProfile
+}
+
+export class NavMenu extends React.Component<props, {}> {
 
   public render() {
     return (
@@ -27,14 +35,25 @@ export default class NavMenu extends React.Component<any, any> {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse className='text-xs-center'>
-          <Nav>
-            <LinkContainer to={'/Admin'}>
-              <NavItem><button className='btn btn-danger' style={btnStyle}>Admin</button></NavItem>
-            </LinkContainer>
-          </Nav>
+          {this.props.userProfile.isAdmin &&
+            <Nav>
+              <LinkContainer to={'/Admin'}>
+                <NavItem><button className='btn btn-danger nav-button' style={btnStyle}>Admin</button></NavItem>
+              </LinkContainer>
+            </Nav>
+          }
           <Account />
         </Navbar.Collapse>
       </Navbar>
     )
   }
 }
+
+export default connect(
+  (state: ApplicationState) => ({
+    ...state.userProfile
+  }),
+  ({
+    ...userProfile.actionCreators
+  })
+)(NavMenu as any)

@@ -93,8 +93,18 @@ ul, menu, dir {
     padding-inline-start: 40px;
 }
 
+.account-btn-container {
+    float: right;
+}
+
 @media (max-width: 767px) {
     .text-xs-center {
         text-align: center;
+    }
+    .nav-button {
+        width: 80% !important;
+    }
+    .account-btn-container {
+        float: none !important;
     }
 }
