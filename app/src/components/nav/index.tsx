@@ -1,13 +1,7 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { Nav, NavItem, Navbar } from 'react-bootstrap'
-import AccountContainer from './accountContainer'
-
-const btnStyle = {
-  fontSize: '18px',
-  padding: '3px 15px',
-  margin: '8px 10px'
-}
+import { Navbar } from 'react-bootstrap'
+import Account from '../userProfile'
 
 export default class NavMenu extends React.Component<any, any> {
 
@@ -27,7 +21,7 @@ export default class NavMenu extends React.Component<any, any> {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse className='text-xs-center'>
-          <AccountContainer />
+          <Account />
         </Navbar.Collapse>
       </Navbar>
     )

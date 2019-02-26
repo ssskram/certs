@@ -8,11 +8,11 @@ const unloadedState: types.certifications = {
 }
 
 export const actionCreators = {
-    loadItems: (): AppThunkAction<any> => (dispatch) => {
+    loadCertifications: (): AppThunkAction<any> => (dispatch) => {
         fetch("https://365proxy.azurewebsites.us/pghcerts/certTypes", {
             method: 'get',
             headers: new Headers({
-                'Authorization': 'Bearer ' + process.env.REACT_APP_365_PROXY
+                'Authorization': 'Bearer ' + process.env.REACT_APP_365_API
             })
 
         })

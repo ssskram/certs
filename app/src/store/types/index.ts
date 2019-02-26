@@ -13,6 +13,7 @@ export interface messsage {
 
 // user profile
 export interface userProfile {
+    id: number
     department: string
     title: string
     isAdmin: boolean
