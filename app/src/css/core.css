@@ -29,7 +29,12 @@ hr {
     overflow: visible;
     height: 2px;
     border-top: 1px solid #383838;
-    margin: 1.8em 0;
+    margin: 0 0;
+}
+
+.crimson-text {
+    font-family: 'Crimson Text', serif;
+    letter-spacing: .05em;
 }
 
 .oswald-header {

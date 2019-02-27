@@ -13,6 +13,7 @@ import CertHistory from './markup/certTable'
 import ExpirationDates from './markup/expirationDates'
 import DeleteRecord from './markup/deleteRecord'
 import EditRecord from './markup/editRecord'
+import NewRecord from '../newCertRecord'
 
 type props = {
     user: types.user
@@ -24,6 +25,7 @@ type props = {
 type state = {
     delete: boolean
     edit: boolean
+    add: boolean
     selectedRecord: types.certRecord
 }
 
@@ -33,6 +35,7 @@ export class Home extends React.Component<props, state> {
         this.state = {
             delete: false,
             edit: false,
+            add: false,
             selectedRecord: undefined
         }
     }
@@ -43,7 +46,8 @@ export class Home extends React.Component<props, state> {
 
     delete = (record) => this.setState({ delete: true, selectedRecord: record })
     edit = (record) => this.setState({ edit: true, selectedRecord: record })
-    close = () => this.setState({ edit: false, delete: false, selectedRecord: undefined })
+    add = () => this.setState({ add: true })
+    close = () => this.setState({ add: false, edit: false, delete: false, selectedRecord: undefined })
 
     render() {
         return (
@@ -54,6 +58,8 @@ export class Home extends React.Component<props, state> {
                     user={this.props.user}
                     userProfile={this.props.userProfile}
                 />
+                <h2>Certifications</h2>
+                <hr />
                 {this.props.certifications.length > 0 && this.props.certHistory.length > 0 &&
                     <div>
                         <ExpirationDates
@@ -66,6 +72,13 @@ export class Home extends React.Component<props, state> {
                             delete={this.delete.bind(this)}
                             edit={this.edit.bind(this)}
                         />
+                        <button
+                            onClick={() => this.setState({ add: true })}
+                            className='btn btn-success'
+                            style={{ marginTop: '8px' }}>
+                            <span style={{ marginRight: '10px' }} className='glyphicon glyphicon-plus'></span>
+                            Add a certification record
+                        </button>
                     </div>
                 }
                 {this.state.delete &&
@@ -75,6 +88,11 @@ export class Home extends React.Component<props, state> {
                 }
                 {this.state.edit &&
                     <EditRecord
+                        close={this.close.bind(this)}
+                    />
+                }
+                {this.state.add &&
+                    <NewRecord
                         close={this.close.bind(this)}
                     />
                 }

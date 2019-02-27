@@ -4,10 +4,7 @@ import * as types from '../../store/types'
 import Form from './markup/form'
 
 type props = {
-    user: types.user
-    userProfile: types.userProfile
-    certifications: types.certification[]
-    certHistory: types.certRecord[]
+    close: () => void
 }
 
 export default class NewCert extends React.Component<props, {}> {
@@ -16,8 +13,8 @@ export default class NewCert extends React.Component<props, {}> {
         return (
             <Modal
                 open={true}
-                onClose={() => { }}
-                showCloseIcon={false}
+                onClose={() => this.props.close()}
+                showCloseIcon={true}
                 classNames={{
                     overlay: 'custom-overlay',
                     modal: 'custom-modal'

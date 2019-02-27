@@ -34,7 +34,7 @@ export default class Certifications extends React.Component<props, {}> {
         }]
 
         return (
-            <div style={{ margin: '25px 0px' }}>
+            <div>
                 <ReactTable
                     data={this.props.certHistory.sort((a, b) => +new Date(a.date) - +new Date(b.date))}
                     columns={columns}
