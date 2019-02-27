@@ -7,12 +7,13 @@ import certificationName from '../functions/certificationName'
 type props = {
     certifications: types.certification[]
     certHistory: types.certRecord[]
+    delete: (record: types.certRecord) => void
+    edit: (record: types.certRecord) => void
 }
 
 export default class Certifications extends React.Component<props, {}> {
 
     render() {
-
         const columns = [{
             Header: 'Certification',
             accessor: 'certId',
@@ -23,12 +24,12 @@ export default class Certifications extends React.Component<props, {}> {
         }, {
             Header: '',
             accessor: 'entryId',
-            Cell: props => <button onClick={props => console.log(props)} className='btn btn-warning' title='Edit record'><span className='glyphicon glyphicon-edit'></span></button>,
+            Cell: props => <button onClick={() => this.props.edit(props.original)} className='btn btn-warning' title='Edit record'><span className='glyphicon glyphicon-edit'></span></button>,
             maxWidth: 65
         }, {
             Header: '',
             accessor: 'entryId',
-            Cell: props => <button onClick={props => console.log(props)} className='btn btn-danger' title='Delete record'><span className='glyphicon glyphicon-remove'></span></button>,
+            Cell: props => <button onClick={() => this.props.delete(props.original)} className='btn btn-danger' title='Delete record'><span className='glyphicon glyphicon-remove'></span></button>,
             maxWidth: 65
         }]
 

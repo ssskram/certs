@@ -1,9 +1,9 @@
 
-export default function UCCexpiration(certHistory, certifications) {
+export default function UCCexpiration(certHistory, certifications, type) {
     const dates = [] as any
     certHistory.forEach(c => {
         const cert = certifications.find(x => x.certID == c.certId)
-        if (cert.UCC == true) {
+        if (cert[type] == true) {
             dates.push(c.date)
         }
     })

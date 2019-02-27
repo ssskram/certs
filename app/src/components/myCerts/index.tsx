@@ -9,8 +9,10 @@ import * as types from '../../store/types'
 import HydrateStore from '../utilities/hydrateStore'
 import Messages from '../utilities/messages'
 import UserProfile from './markup/userInfo'
-import CertHistory from './markup/completedCerts'
+import CertHistory from './markup/certTable'
 import ExpirationDates from './markup/expirationDates'
+import DeleteRecord from './markup/deleteRecord'
+import EditRecord from './markup/editRecord'
 
 type props = {
     user: types.user
@@ -19,11 +21,29 @@ type props = {
     certHistory: types.certRecord[]
 }
 
-export class Home extends React.Component<props, {}> {
+type state = {
+    delete: boolean
+    edit: boolean
+    selectedRecord: types.certRecord
+}
+
+export class Home extends React.Component<props, state> {
+    constructor(props: props) {
+        super(props)
+        this.state = {
+            delete: false,
+            edit: false,
+            selectedRecord: undefined
+        }
+    }
 
     componentDidMount() {
         window.scrollTo(0, 0)
     }
+
+    delete = (record) => this.setState({ delete: true, selectedRecord: record })
+    edit = (record) => this.setState({ edit: true, selectedRecord: record })
+    close = () => this.setState({ edit: false, delete: false, selectedRecord: undefined })
 
     render() {
         return (
@@ -43,8 +63,20 @@ export class Home extends React.Component<props, {}> {
                         <CertHistory
                             certifications={this.props.certifications}
                             certHistory={this.props.certHistory.filter(c => c.user == this.props.user.email)}
+                            delete={this.delete.bind(this)}
+                            edit={this.edit.bind(this)}
                         />
                     </div>
+                }
+                {this.state.delete &&
+                    <DeleteRecord
+                        close={this.close.bind(this)}
+                    />
+                }
+                {this.state.edit &&
+                    <EditRecord
+                        close={this.close.bind(this)}
+                    />
                 }
             </div>
         )
