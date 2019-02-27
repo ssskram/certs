@@ -11,9 +11,6 @@ type props = {
 export default class ExpirationDates extends React.Component<props, {}> {
 
     render() {
-
-        console.log(this.props)
-
         return (
             <div style={{ margin: '25px 0px' }} className='row text-center'>
                 <div className='col-md-6'>
