@@ -11,7 +11,9 @@ export default class User extends React.Component<props, {}> {
     render() {
         return (
             <div>
-                User info here
+                <h2 className='oswald-header'>{this.props.user.name}</h2>
+                <h4><i>{this.props.userProfile.title}</i></h4>
+                <h5>{this.props.userProfile.department}</h5>
             </div>
         )
     }

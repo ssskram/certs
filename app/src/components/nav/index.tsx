@@ -6,7 +6,7 @@ import * as types from '../../store/types'
 import { Link } from 'react-router-dom'
 import { Nav, NavItem, Navbar } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
-import Account from '../userProfile'
+import Account from './userProfile'
 
 const btnStyle = {
   fontSize: '16px',

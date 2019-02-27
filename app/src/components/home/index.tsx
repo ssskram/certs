@@ -10,6 +10,7 @@ import HydrateStore from '../utilities/hydrateStore'
 import Messages from '../utilities/messages'
 import UserProfile from './markup/userInfo'
 import CertHistory from './markup/completedCerts'
+import ExpirationDates from './markup/expirationDates'
 
 type props = {
     user: types.user
@@ -33,10 +34,18 @@ export class Home extends React.Component<props, {}> {
                     user={this.props.user}
                     userProfile={this.props.userProfile}
                 />
-                <CertHistory
-                    certifications={this.props.certifications}
-                    certHistory={this.props.certHistory}
-                />
+                {this.props.certifications.length > 0 && this.props.certHistory.length > 0 &&
+                    <div>
+                        <ExpirationDates
+                            certifications={this.props.certifications}
+                            certHistory={this.props.certHistory.filter(c => c.user == this.props.user.email)}
+                        />
+                        <CertHistory
+                            certifications={this.props.certifications}
+                            certHistory={this.props.certHistory.filter(c => c.user == this.props.user.email)}
+                        />
+                    </div>
+                }
             </div>
         )
     }

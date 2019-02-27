@@ -1,6 +1,3 @@
-/* Datatables
-/* ------------------------- */
-
 th {
     font-weight: normal;
 }
@@ -23,16 +20,11 @@ td {
     white-space: pre-wrap !important;
     overflow: visible !important;
     text-overflow: inherit !important;
-    padding: 10px !important;
+    padding: 8px !important;
 }
 
 .rt-thead {
-    padding: 5px !important;
-    font-weight: 600;
-}
-
-.rt-resizable-header-content {
-    font-size: 14px;
+    font-weight: bold;
 }
 
 .table-container {
@@ -44,18 +36,16 @@ td {
     display: none !important;
 }
 
-.ReactTable .rt-thead .rt-th.-sort-asc,
-.ReactTable .rt-thead .rt-td.-sort-asc {
+.ReactTable .rt-thead .rt-th.-sort-asc, .ReactTable .rt-thead .rt-td.-sort-asc {
     box-shadow: inset 0 3px 0 0 rgba(0, 0, 0, 0.0) !important;
 }
 
-.ReactTable .rt-thead .rt-th.-sort-desc,
-.ReactTable .rt-thead .rt-td.-sort-desc {
+.ReactTable .rt-thead .rt-th.-sort-desc, .ReactTable .rt-thead .rt-td.-sort-desc {
     box-shadow: inset 0 3px 0 0 rgba(0, 0, 0, 0.0) !important;
 }
 
 .ReactTable .-pagination {
-    padding: 15px !important;
+    padding: 5px !important;
     box-shadow: 0 0 0px 0 rgba(0, 0, 0, 0.1) !important;
     border-top: 0px solid rgba(0, 0, 0, 0.1) !important;
 }

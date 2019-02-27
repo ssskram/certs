@@ -4,14 +4,14 @@
 
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { ApplicationState } from '../../../store'
-import * as types from '../../../store/types'
-import * as user from '../../../store/user'
-import * as userProfile from '../../../store/userProfile'
+import { ApplicationState } from '../../../../store'
+import * as types from '../../../../store/types'
+import * as user from '../../../../store/user'
+import * as userProfile from '../../../../store/userProfile'
 import * as style from '../style'
-import Select from '../../formElements/select'
+import Select from '../../../formElements/select'
 import { Helmet } from "react-helmet"
-import Spinner from '../../utilities/spinner'
+import Spinner from '../../../utilities/spinner'
 
 type props = {
     user: types.user

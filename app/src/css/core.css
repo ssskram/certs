@@ -32,6 +32,11 @@ hr {
     margin: 1.8em 0;
 }
 
+.oswald-header {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+}
+
 /* Scroll bar
 /* ------------------------- */
 
