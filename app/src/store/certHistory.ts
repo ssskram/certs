@@ -22,52 +22,49 @@ export const actionCreators = {
             })
     },
     addCertRecord: (record): AppThunkAction<any> => (dispatch) => {
-        // const forSP = {
-        //     User: record.user,
-        //     Certification_x0020_ID: record.certId,
-        //     Date: record.date
-        // }
-        // fetch("https://365proxy.azurewebsites.us/pghcerts/certHistory", {
-        //     method: 'post',
-        //     body: JSON.stringify(forSP),
-        //     headers: new Headers({
-        //         'Authorization': 'Bearer ' + process.env.REACT_APP_365_API,
-        //         'Content-Type': 'application/json'
-        //     })
-        // })
-        //     .then(() => {
-        //         dispatch({ type: constants.addCertRecord, certRecord: record })
-        //     })
+        const forSP = {
+            User: record.user,
+            Certification_x0020_ID: record.certId,
+            Date: record.date
+        }
+        fetch("https://365proxy.azurewebsites.us/pghcerts/certHistory", {
+            method: 'post',
+            body: JSON.stringify(forSP),
+            headers: new Headers({
+                'Authorization': 'Bearer ' + process.env.REACT_APP_365_API,
+                'Content-Type': 'application/json'
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                record.entryId = data.entryId
+                dispatch({ type: constants.addCertRecord, certRecord: record })
+            })
     },
     updateCertRecord: (record): AppThunkAction<any> => (dispatch) => {
-        // const forSP = {
-        //     Certification_x0020_ID: record.certId,
-        //     Date: record.date
-        // }
-        // fetch("https://365proxy.azurewebsites.us/pghcerts/updateCertRecord?id=" + record.entryId, {
-        //     method: 'post',
-        //     body: JSON.stringify(forSP),
-        //     headers: new Headers({
-        //         'Authorization': 'Bearer ' + process.env.REACT_APP_365_API,
-        //         'Content-Type': 'application/json'
-        //     })
-        // })
-        //     .then(() => {
-        //         dispatch({ type: constants.updateCertRecord, certRecord: record })
-        //     })
+        const forSP = {
+            Certification_x0020_ID: record.certId,
+            Date: record.date
+        }
+        fetch("https://365proxy.azurewebsites.us/pghcerts/updateCertRecord?id=" + record.entryId, {
+            method: 'post',
+            body: JSON.stringify(forSP),
+            headers: new Headers({
+                'Authorization': 'Bearer ' + process.env.REACT_APP_365_API,
+                'Content-Type': 'application/json'
+            })
+        })
+            .then(() => dispatch({ type: constants.updateCertRecord, certRecord: record }))
     },
     deleteCertRecord: (entryId): AppThunkAction<any> => (dispatch) => {
-        // fetch("https://365proxy.azurewebsites.us/pghcerts/deleteCertRecord?id=" + entryId, {
-        //     method: 'delete',
-        //     headers: new Headers({
-        //         'Authorization': 'Bearer ' + process.env.REACT_APP_365_API,
-        //         'Content-Type': 'application/json'
-        //     })
-        // })
-        //     .then(() => {
-        //         dispatch({ type: constants.deleteCertRecord, entryId: entryId })
-        //     })
-        dispatch({ type: constants.deleteCertRecord, entryId: entryId })
+        fetch("https://365proxy.azurewebsites.us/pghcerts/deleteCertRecord?id=" + entryId, {
+            method: 'delete',
+            headers: new Headers({
+                'Authorization': 'Bearer ' + process.env.REACT_APP_365_API,
+                'Content-Type': 'application/json'
+            })
+        })
+            .then(() => dispatch({ type: constants.deleteCertRecord, entryId: entryId }))
     }
 }
 
