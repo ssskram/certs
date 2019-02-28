@@ -12,8 +12,7 @@ import UserProfile from './markup/userInfo'
 import CertHistory from './markup/certTable'
 import ExpirationDates from './markup/expirationDates'
 import DeleteRecord from './markup/deleteRecord'
-import EditRecord from './markup/editRecord'
-import NewRecord from '../newCertRecord'
+import CertForm from './markup/input'
 
 type props = {
     user: types.user
@@ -87,12 +86,16 @@ export class Home extends React.Component<props, state> {
                     />
                 }
                 {this.state.edit &&
-                    <EditRecord
+                    <CertForm
+                        cert={this.state.selectedRecord}
+                        certifications={this.props.certifications}
                         close={this.close.bind(this)}
                     />
                 }
                 {this.state.add &&
-                    <NewRecord
+                    <CertForm
+                        cert={undefined}
+                        certifications={this.props.certifications}
                         close={this.close.bind(this)}
                     />
                 }

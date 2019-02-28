@@ -6,7 +6,7 @@ type props = {
     close: () => void
 }
 
-export default class EditRecord extends React.Component<props, {}> {
+export default class DeleteRecord extends React.Component<props, {}> {
 
     render() {
         return (
@@ -19,7 +19,10 @@ export default class EditRecord extends React.Component<props, {}> {
                 }}
                 showCloseIcon={true}
                 center>
-                Edit form here
+                <div className='text-center'>
+                    <h3>Are you sure you want to delete this certification?</h3>
+                    <button className='btn btn-danger'>Delete</button>
+                </div>
             </Modal>
         )
     }
