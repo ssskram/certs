@@ -1,7 +1,7 @@
 import * as React from 'react'
 import Cleave from 'cleave.js/react'
 
-export default class Input extends React.Component<any, any> {
+export default class Date extends React.Component<any, any> {
 
     public render() {
         return (

@@ -3,7 +3,7 @@ import Modal from 'react-responsive-modal'
 import * as types from '../../../store/types'
 import certificationName from '../functions/certificationName'
 import Select from '../../formElements/select'
-import Datepicker from '../../formElements/datepicker'
+import Datepicker from '../../formElements/date'
 import * as certifications from '../certficiations'
 
 type props = {
@@ -26,6 +26,10 @@ export default class CertForm extends React.Component<props, state> {
         }
     }
 
+    save() {
+
+    }
+
     render() {
         return (
             <Modal
@@ -37,8 +41,8 @@ export default class CertForm extends React.Component<props, state> {
                     modal: 'custom-modal'
                 }}
                 center>
-                <div>
-                    <h3 className='text-center'>
+                <div className='text-center'>
+                    <h3>
                         {this.props.cert ? "Edit record" : "New certification record"}
                     </h3>
                     <hr />
@@ -62,6 +66,7 @@ export default class CertForm extends React.Component<props, state> {
                         }}
                         required
                     />
+                    <button disabled={(!this.state.certification) || (!this.state.expiration)} onClick={this.save.bind(this)} className='btn btn-success'>Save</button>
                 </div>
             </Modal>
         )
