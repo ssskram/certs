@@ -19,6 +19,7 @@ type props = {
     userProfile: types.userProfile
     certifications: types.certification[]
     certHistory: types.certRecord[]
+    deleteCertRecord: (entryId: number) => void
 }
 
 type state = {
@@ -83,6 +84,8 @@ export class Home extends React.Component<props, state> {
                 {this.state.delete &&
                     <DeleteRecord
                         close={this.close.bind(this)}
+                        selectedRecord={this.state.selectedRecord}
+                        deleteRecord={this.props.deleteCertRecord.bind(this)}
                     />
                 }
                 {this.state.edit &&

@@ -55,6 +55,19 @@ export const actionCreators = {
             .then(() => {
                 dispatch({ type: constants.updateCertRecord, certRecord: record })
             })
+    },
+    deleteCertRecord: (entryId): AppThunkAction<any> => (dispatch) => {
+        // fetch("https://365proxy.azurewebsites.us/pghcerts/deleteCertRecord?id=" + entryId, {
+        //     method: 'delete',
+        //     headers: new Headers({
+        //         'Authorization': 'Bearer ' + process.env.REACT_APP_365_API,
+        //         'Content-Type': 'application/json'
+        //     })
+        // })
+        //     .then(() => {
+        //         dispatch({ type: constants.deleteCertRecord, entryId: entryId })
+        //     })
+        dispatch({ type: constants.deleteCertRecord, entryId: entryId })
     }
 }
 
@@ -74,7 +87,15 @@ export const reducer: Reducer<types.certHistory> = (state: types.certHistory, in
                     date: action.certRecord.date
                 } : record
                 )
-            };
+            }
+        case constants.deleteCertRecord:
+            let copy = state.certHistory.slice()
+            const index = copy.map(e => e.entryId).indexOf(action.entryId)
+            copy.splice(index, 1)
+            return {
+                ...state,
+                certHistory: copy
+            }
     }
 
     return state || unloadedState

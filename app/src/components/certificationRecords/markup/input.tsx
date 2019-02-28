@@ -5,6 +5,7 @@ import certificationName from '../functions/certificationName'
 import Select from '../../formElements/select'
 import Datepicker from '../../formElements/date'
 import * as certifications from '../certficiations'
+import { Helmet } from "react-helmet"
 
 type props = {
     cert: types.certRecord
@@ -21,13 +22,13 @@ export default class CertForm extends React.Component<props, state> {
     constructor(props) {
         super(props)
         this.state = {
-            certification: props.cert ? certificationName(props.cert.certId, props.certifications) : undefined,
+            certification: props.cert ? props.cert.certId : undefined,
             expiration: props.cert ? props.cert.date : undefined
         }
     }
 
     save() {
-
+        console.log(this.state)
     }
 
     render() {
@@ -42,13 +43,16 @@ export default class CertForm extends React.Component<props, state> {
                 }}
                 center>
                 <div className='text-center'>
+                    <Helmet>
+                        <style>{'.custom-modal { overflow: visible; } .Select-menu-outer { overflow: visible}'}</style>
+                    </Helmet>
                     <h3>
                         {this.props.cert ? "Edit record" : "New certification record"}
                     </h3>
                     <hr />
                     <br />
                     <Select
-                        value={this.props.cert ? { value: this.state.certification, label: this.state.certification } : undefined}
+                        value={this.props.cert ? { value: this.state.certification, label: certificationName(this.state.certification, this.props.certifications) } : undefined}
                         header="Certification"
                         placeholder='Select certification'
                         onChange={certification => this.setState({ certification: certification.value })}
@@ -60,10 +64,7 @@ export default class CertForm extends React.Component<props, state> {
                         value={this.state.expiration}
                         header='Expiration date'
                         placeholder="Enter a date"
-                        callback={(expiration) => {
-                            console.log(expiration)
-                            this.setState({ expiration })
-                        }}
+                        callback={(e) => this.setState({ expiration: e.target.value })}
                         required
                     />
                     <button disabled={(!this.state.certification) || (!this.state.expiration)} onClick={this.save.bind(this)} className='btn btn-success'>Save</button>
