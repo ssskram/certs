@@ -53,7 +53,7 @@ export class Home extends React.Component<props, state> {
 
     render() {
         return (
-            <div className='col-md-8 col-md-offset-2'>
+            <div className='col-md-8 col-md-offset-2' style={{ marginBottom: '50px' }}>
                 <HydrateStore />
                 <Messages />
                 <UserProfile
@@ -69,6 +69,7 @@ export class Home extends React.Component<props, state> {
                             certHistory={this.props.certHistory.filter(c => c.user == this.props.user.email)}
                         />
                         <CertHistory
+                            admin={false}
                             certifications={this.props.certifications}
                             certHistory={this.props.certHistory.filter(c => c.user == this.props.user.email)}
                             delete={this.delete.bind(this)}

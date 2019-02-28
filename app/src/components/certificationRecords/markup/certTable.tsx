@@ -5,6 +5,7 @@ import "react-table/react-table.css"
 import certificationName from '../functions/certificationName'
 
 type props = {
+    admin: boolean
     certifications: types.certification[]
     certHistory: types.certRecord[]
     delete: (record: types.certRecord) => void
@@ -33,6 +34,13 @@ export default class Certifications extends React.Component<props, {}> {
             maxWidth: 65
         }]
 
+        if (this.props.admin) {
+            columns.unshift({
+                Header: 'User',
+                accessor: 'user'
+            })
+        }
+
         return (
             <div>
                 <ReactTable
@@ -40,7 +48,7 @@ export default class Certifications extends React.Component<props, {}> {
                     columns={columns}
                     loading={false}
                     minRows={0}
-                    pageSize={5}
+                    pageSize={this.props.admin ? 50 : 5}
                     showPageSizeOptions={false}
                     noDataText=''
                 />

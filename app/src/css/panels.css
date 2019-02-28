@@ -10,5 +10,7 @@
 
 .panel-body {
     padding: 20px;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }
 
