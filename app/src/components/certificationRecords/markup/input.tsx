@@ -8,8 +8,11 @@ import * as certifications from '../certficiations'
 import { Helmet } from "react-helmet"
 
 type props = {
+    user: types.user
     cert: types.certRecord
     certifications: types.certification[]
+    addCertRecord: (record: object) => void
+    updateCertRecord: (record: object) => void
     close: () => void
 }
 
@@ -28,7 +31,20 @@ export default class CertForm extends React.Component<props, state> {
     }
 
     save() {
-        console.log(this.state)
+        if (this.props.cert) {
+            this.props.updateCertRecord({
+                certId: this.state.certification,
+                date: this.state.expiration,
+                entryId: this.props.cert.entryId
+            })
+        } else {
+            this.props.addCertRecord({
+                user: this.props.user.email,
+                certId: this.state.certification,
+                date: this.state.expiration
+            })
+        }
+        this.props.close()
     }
 
     render() {

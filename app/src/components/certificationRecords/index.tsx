@@ -20,6 +20,8 @@ type props = {
     certifications: types.certification[]
     certHistory: types.certRecord[]
     deleteCertRecord: (entryId: number) => void
+    addCertRecord: (record: object) => void
+    updateCertRecord: (record: object) => void
 }
 
 type state = {
@@ -90,16 +92,22 @@ export class Home extends React.Component<props, state> {
                 }
                 {this.state.edit &&
                     <CertForm
+                        user={this.props.user}
                         cert={this.state.selectedRecord}
                         certifications={this.props.certifications}
                         close={this.close.bind(this)}
+                        updateCertRecord={this.props.updateCertRecord.bind(this)}
+                        addCertRecord={this.props.addCertRecord.bind(this)}
                     />
                 }
                 {this.state.add &&
                     <CertForm
+                        user={this.props.user}
                         cert={undefined}
                         certifications={this.props.certifications}
                         close={this.close.bind(this)}
+                        updateCertRecord={this.props.updateCertRecord.bind(this)}
+                        addCertRecord={this.props.addCertRecord.bind(this)}
                     />
                 }
             </div>
