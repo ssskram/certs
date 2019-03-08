@@ -57,6 +57,7 @@ export const actionCreators = {
             .then(() => dispatch({ type: constants.updateCertRecord, certRecord: record }))
     },
     deleteCertRecord: (entryId): AppThunkAction<any> => (dispatch) => {
+        dispatch({ type: constants.deleteCertRecord, entryId: entryId })
         fetch("https://365proxy.azurewebsites.us/pghcerts/deleteCertRecord?id=" + entryId, {
             method: 'delete',
             headers: new Headers({
@@ -64,7 +65,6 @@ export const actionCreators = {
                 'Content-Type': 'application/json'
             })
         })
-            .then(() => dispatch({ type: constants.deleteCertRecord, entryId: entryId }))
     }
 }
 
