@@ -34,6 +34,12 @@ export interface certification {
 export interface certHistory {
     certHistory: certRecord[]
 }
+export interface iccHistory {
+    iccHistory: certRecord[]
+}
+export interface uccHistory {
+    uccHistory: certRecord[]
+}
 export interface certRecord {
     entryId: number
     user: string

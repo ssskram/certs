@@ -3,13 +3,13 @@ import { AppThunkAction } from ".";
 import * as constants from "./constants";
 import * as types from "./types";
 
-const unloadedState: types.certHistory = {
-  certHistory: []
+const unloadedState: types.uccHistory = {
+  uccHistory: []
 };
 
 export const actionCreators = {
-  loadCertHistory: (): AppThunkAction<any> => dispatch => {
-    fetch("https://365proxy.azurewebsites.us/pghcerts/certHistory", {
+  loadUccHistory: (): AppThunkAction<any> => dispatch => {
+    fetch("https://365proxy.azurewebsites.us/pghcerts/uccHistory", {
       method: "get",
       headers: new Headers({
         Authorization: "Bearer " + process.env.REACT_APP_365_API
@@ -17,16 +17,16 @@ export const actionCreators = {
     })
       .then(res => res.json())
       .then(data => {
-        dispatch({ type: constants.loadCertHistory, certHistory: data });
+        dispatch({ type: constants.loadUccHistory, uccHistory: data });
       });
   },
-  addCertRecord: (record): AppThunkAction<any> => dispatch => {
+  addUccRecord: (record): AppThunkAction<any> => dispatch => {
     const forSP = {
       User: record.user,
       Certification_x0020_ID: record.certId,
       Date: record.date
     };
-    fetch("https://365proxy.azurewebsites.us/pghcerts/certHistory", {
+    fetch("https://365proxy.azurewebsites.us/pghcerts/uccHistory", {
       method: "post",
       body: JSON.stringify(forSP),
       headers: new Headers({
@@ -37,16 +37,16 @@ export const actionCreators = {
       .then(response => response.json())
       .then(data => {
         record.entryId = data.entryId;
-        dispatch({ type: constants.addCertRecord, certRecord: record });
+        dispatch({ type: constants.addUccRecord, uccRecord: record });
       });
   },
-  updateCertRecord: (record): AppThunkAction<any> => dispatch => {
+  updateUccRecord: (record): AppThunkAction<any> => dispatch => {
     const forSP = {
       Certification_x0020_ID: record.certId,
       Date: record.date
     };
     fetch(
-      "https://365proxy.azurewebsites.us/pghcerts/updateCertRecord?id=" +
+      "https://365proxy.azurewebsites.us/pghcerts/updateUccRecord?id=" +
         record.entryId,
       {
         method: "post",
@@ -57,13 +57,13 @@ export const actionCreators = {
         })
       }
     ).then(() =>
-      dispatch({ type: constants.updateCertRecord, certRecord: record })
+      dispatch({ type: constants.updateUccRecord, uccRecord: record })
     );
   },
-  deleteCertRecord: (entryId): AppThunkAction<any> => dispatch => {
-    dispatch({ type: constants.deleteCertRecord, entryId: entryId });
+  deleteUccRecord: (entryId): AppThunkAction<any> => dispatch => {
+    dispatch({ type: constants.deleteUccRecord, entryId: entryId });
     fetch(
-      "https://365proxy.azurewebsites.us/pghcerts/deleteCertRecord?id=" +
+      "https://365proxy.azurewebsites.us/pghcerts/deleteUccRecord?id=" +
         entryId,
       {
         method: "delete",
@@ -76,39 +76,39 @@ export const actionCreators = {
   }
 };
 
-export const reducer: Reducer<types.certHistory> = (
-  state: types.certHistory,
+export const reducer: Reducer<types.uccHistory> = (
+  state: types.uccHistory,
   incomingAction: Action
 ) => {
   const action = incomingAction as any;
   switch (action.type) {
-    case constants.loadCertHistory:
-      return { ...state, certHistory: action.certHistory };
-    case constants.addCertRecord:
+    case constants.loadUccHistory:
+      return { ...state, uccHistory: action.uccHistory };
+    case constants.addUccRecord:
       return {
         ...state,
-        certHistory: state.certHistory.concat(action.certRecord)
+        uccHistory: state.uccHistory.concat(action.uccRecord)
       };
-    case constants.updateCertRecord:
+    case constants.updateUccRecord:
       return {
         ...state,
-        certHistory: state.certHistory.map(record =>
-          record.entryId === action.certRecord.entryId
+        uccHistory: state.uccHistory.map(record =>
+          record.entryId === action.uccRecord.entryId
             ? {
                 ...record,
-                certId: action.certRecord.certId,
-                date: action.certRecord.date
+                certId: action.uccRecord.certId,
+                date: action.uccRecord.date
               }
             : record
         )
       };
-    case constants.deleteCertRecord:
-      let copy = state.certHistory.slice();
+    case constants.deleteUccRecord:
+      let copy = state.uccHistory.slice();
       const index = copy.map(e => e.entryId).indexOf(action.entryId);
       copy.splice(index, 1);
       return {
         ...state,
-        certHistory: copy
+        uccHistory: copy
       };
   }
 
