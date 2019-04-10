@@ -111,11 +111,11 @@ export default class CertForm extends React.Component<props, state> {
             callback={e => this.setState({ uccExp: e.target.value })}
             required
           />
-          <div className='text-center'>
+          <div className="text-center">
             <button
               disabled={
                 !this.state.certification ||
-                (!this.state.iccExp || !this.state.uccExp)
+                !(this.state.uccExp || this.state.iccExp)
               }
               onClick={this.save.bind(this)}
               className="btn btn-success"

@@ -16,7 +16,6 @@ class Hydrate extends React.Component<any, {}> {
   }
 
   public render() {
-    console.log(this.props);
     return null;
   }
 }

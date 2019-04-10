@@ -24,7 +24,8 @@ export const actionCreators = {
     const forSP = {
       User: record.user,
       Certification_x0020_ID: record.certId,
-      Date: record.date
+      ICC_x0020_Exp: record.iccExp,
+      UCC_x0020_Exp: record.uccExp
     };
     fetch("https://365proxy.azurewebsites.us/pghcerts/certHistory", {
       method: "post",
@@ -43,7 +44,8 @@ export const actionCreators = {
   updateCertRecord: (record): AppThunkAction<any> => dispatch => {
     const forSP = {
       Certification_x0020_ID: record.certId,
-      Date: record.date
+      ICC_x0020_Exp: record.iccExp,
+      UCC_x0020_Exp: record.uccExp
     };
     fetch(
       "https://365proxy.azurewebsites.us/pghcerts/updateCertRecord?id=" +
@@ -97,7 +99,8 @@ export const reducer: Reducer<types.certHistory> = (
             ? {
                 ...record,
                 certId: action.certRecord.certId,
-                date: action.certRecord.date
+                iccExp: action.certRecord.iccExp,
+                uccExp: action.certRecord.uccExp
               }
             : record
         )
