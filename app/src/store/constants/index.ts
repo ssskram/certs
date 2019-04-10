@@ -23,3 +23,13 @@ export const loadCertHistory = 'loadCertHistory'
 export const addCertRecord = 'addCertRecord'
 export const updateCertRecord = 'updateCertRecord'
 export const deleteCertRecord = 'deleteCertRecord'
+
+export const loadUccHistory = 'loadUccHistory'
+export const addUccRecord = 'addUccRecord'
+export const updateUccRecord = 'updateUccRecord'
+export const deleteUccRecord = 'deleteUccRecord'
+
+export const loadIccHistory = 'loadIccHistory'
+export const addIccRecord = 'addIccRecord'
+export const updateIccRecord = 'updateIccRecord'
+export const deleteIccRecord = 'deleteIccRecord'
