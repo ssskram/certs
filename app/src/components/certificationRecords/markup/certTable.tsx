@@ -48,8 +48,15 @@ export default class Certifications extends React.Component<props, {}> {
           </button>
         ),
         maxWidth: 65
-      },
-      {
+      }
+    ];
+
+    if (this.props.admin) {
+      columns.unshift({
+        Header: "User",
+        accessor: "user"
+      });
+      columns.push({
         Header: "",
         accessor: "entryId",
         Cell: props => (
@@ -62,13 +69,6 @@ export default class Certifications extends React.Component<props, {}> {
           </button>
         ),
         maxWidth: 65
-      }
-    ];
-
-    if (this.props.admin) {
-      columns.unshift({
-        Header: "User",
-        accessor: "user"
       });
     }
 
