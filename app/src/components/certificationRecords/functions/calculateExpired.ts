@@ -1,12 +1,15 @@
-
-export default function UCCexpiration(certHistory, certifications, type) {
-    const dates = [] as any
-    certHistory.forEach(c => {
-        const cert = certifications.find(x => x.certID == c.certId)
-        if (cert[type] == true) {
-            dates.push(c.date)
-        }
-    })
-    const sortedDates = dates.sort((a, b) => +new Date(a) - +new Date(b))
-    return sortedDates.pop()
+export default function UCCexpiration(certHistory, type) {
+  if (type == "ICC") {
+    const iccDates = certHistory
+      .map(i => i.iccExp)
+      .filter(n => n)
+      .sort((a, b) => +new Date(a) - +new Date(b));
+    return iccDates[0];
+  } else {
+    const uccDates = certHistory
+      .map(i => i.uccExp)
+      .filter(n => n)
+      .sort((a, b) => +new Date(a) - +new Date(b));
+    return uccDates.pop();
+  }
 }

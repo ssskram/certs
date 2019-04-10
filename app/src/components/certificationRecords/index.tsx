@@ -81,7 +81,6 @@ export class Home extends React.Component<props, state> {
               ).length > 0 ? (
                 <div>
                   <ExpirationDates
-                    certifications={this.props.certifications}
                     certHistory={this.props.certHistory.filter(
                       c => c.user == this.props.user.email
                     )}

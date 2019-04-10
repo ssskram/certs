@@ -86,7 +86,6 @@ export class Admin extends React.Component<props, state> {
                 {this.state.filter &&
                     <UserInfo
                         certHistory={this.props.certHistory.filter(h => h.user == this.state.filter)}
-                        certifications={this.props.certifications}
                         filter={this.state.filter}
                     />
                 }
