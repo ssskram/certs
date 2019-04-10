@@ -26,8 +26,6 @@ export interface certifications {
 export interface certification {
     certID: string
     certName: string
-    ICC: boolean
-    UCC: boolean
 }
 
 // certification history
@@ -38,5 +36,6 @@ export interface certRecord {
     entryId: number
     user: string
     certId: string
-    date: string
+    iccExp: string
+    uccExp: string
 }
