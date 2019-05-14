@@ -11,7 +11,7 @@ import Account from './userProfile'
 const btnStyle = {
   fontSize: '16px',
   margin: '6px 10px'
-}
+} 
 
 type props = {
   userProfile: types.userProfile
