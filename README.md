@@ -1,5 +1,8 @@
 # Certs
 
+Certs is used by the Department of Permits, Licenses, & Inspections at the City of Pittsburgh to track professional certifications and continuing education credits for it's personnel.  
+
+Certs interfaces with Sharepoint as a data store via the [365-proxy](https://github.com/CityofPittsburgh/365-api)
 
 ## A note on boilerplate
 
@@ -12,9 +15,12 @@ This README will focus only on the components of this application that are uniqu
     app
     ├── src                         
         ├── components        
-            |── fullEventRecord     
+            |── admin                   # Admin view into certification history...permits search, delete, edit, etc.
+            |── certificationRecords    # Return users cert records, and provides interface to create new records 
         ├── store                   
-            |── events              
+            |── certHistory             # Store of all certification history
+            |── certifications          # Store of all certification types
+            |── userProfile             # Mappings of users to departments and positions        
 
 ## Running Locally
 
