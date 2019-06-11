@@ -110,7 +110,9 @@ export class Home extends React.Component<props, state> {
                 <div className="text-center">
                   <br />
                   <Cat size={220} mood="shocked" color="#617487" />
-                  <h4 className='oswald-header' style={{color: '#2C3E50'}}>You haven't completed any certifications</h4>
+                  <h4 className="oswald-header" style={{ color: "#2C3E50" }}>
+                    You haven't completed any certifications
+                  </h4>
                   <button
                     onClick={() => this.setState({ add: true })}
                     className="btn btn-success"
