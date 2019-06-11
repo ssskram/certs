@@ -4,6 +4,8 @@ Certs is used by the Department of Permits, Licenses, & Inspections at the City 
 
 Certs interfaces with Sharepoint as a data store via the [365-proxy](https://github.com/CityofPittsburgh/365-api)
 
+<img src='screenshot.png' width='100%'/>
+
 ## A note on boilerplate
 
 The bones of Certs are shared across all client applications developed by Paul Marks for the City of Pittsburgh.  For more in-depth documentation on the structure,  design choices, authentication flow, and installation procedures for this application, please see the documentation for the [boilerplate](https://github.com/CityofPittsburgh/react-typescript-boilerplate).
